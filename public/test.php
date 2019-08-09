@@ -76,13 +76,14 @@ function objectsIntoArray($arrObjData, $arrSkipIndices = array())
 }
 
 		
-		push_text('C1a08a6e5568e569516cdf3ff93f69a2b','Test Push'); //SMK-LineBot
+//		push_text('Uf9a10a3ad619a46dc309b4bbb748b5e1','Test Push'); //SMK
 		
 
 date_default_timezone_set('ASIA/Bangkok');
 print date("l jS \of F Y h:i:s A") .PHP_EOL;
 print date("j F Y") .PHP_EOL;
 
-
+//Group Id: C1a08a6e5568e569516cdf3ff93f69a2b
+//User Id: Uf9a10a3ad619a46dc309b4bbb748b5e1
 
 ?> 
