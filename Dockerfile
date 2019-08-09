@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:7.2-apache
 MAINTAINER SMK <smk.yodjunda@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
