@@ -1,9 +1,6 @@
 FROM php:5.6-apache
 MAINTAINER SMK <smk.yodjunda@gmail.com>
 
-#docker build -t kamas/smk-line-bot .
-
-# disable interactive functions. 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN requirements="libpng-dev libjpeg-dev libjpeg62-turbo libmcrypt4 libmcrypt-dev libcurl3-dev libxml2-dev libxslt-dev libicu-dev " \
