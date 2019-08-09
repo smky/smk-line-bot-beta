@@ -33,9 +33,9 @@ ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
 	
 ADD . /var/www/
-RUN cd /var/www/public && composer update
+RUN cd /var/www/ && composer update
 
 WORKDIR /var/www/public
 
 RUN a2enmod rewrite
-RUN usermod -u 1000 www-data && chown -R www-data:www-data /var/www/public && chmod 755 -R /var/www/public
+RUN usermod -u 1000 www-data && chown -R www-data:www-data /var/www && chmod 755 -R /var/www
