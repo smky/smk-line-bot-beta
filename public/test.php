@@ -85,5 +85,6 @@ print date("j F Y") .PHP_EOL;
 
 //Group Id: C1a08a6e5568e569516cdf3ff93f69a2b
 //User Id: Uf9a10a3ad619a46dc309b4bbb748b5e1
+phpinfo();
 
 ?> 
