@@ -9,8 +9,8 @@ function push_text($to,$Message){
 	
 		$path = __DIR__ . '/../vendor/autoload.php';
 		require_once $path;
-		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('LineChannelToken'));
-		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('LineChannelSecret')]);
+		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('LINEBOT_CHANNEL_TOKEN'));
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('LINEBOT_CHANNEL_SECRET')]);
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($Message);
 		$response = $bot->pushMessage($to, $textMessageBuilder);
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
@@ -27,8 +27,8 @@ function push_image($to,$url){
 	
 		$path = __DIR__ . '/../vendor/autoload.php';
 		require_once $path;
-		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('LineChannelToken'));
-		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('LineChannelSecret')]);
+		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('LINEBOT_CHANNEL_TOKEN'));
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('LINEBOT_CHANNEL_SECRET')]);
 		$imageMessageBuilder = new LINE\LINEBot\MessageBuilder\ImageMessageBuilder($url,$url);
 		$response = $bot->pushMessage($to, $imageMessageBuilder);
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
