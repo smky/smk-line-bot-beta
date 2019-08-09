@@ -1,9 +1,21 @@
-FROM php:7.2-apache
+FROM php:5.6-apache
 MAINTAINER SMK <smk.yodjunda@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && rm -rf /var/lib/apt/lists/* \
+RUN requirements="libpng-dev libjpeg-dev libjpeg62-turbo libmcrypt4 libmcrypt-dev libcurl3-dev libxml2-dev libxslt-dev libicu-dev " \
+    && apt-get update && apt-get install -y $requirements && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-configure gd --with-jpeg-dir=/usr/lib \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install mcrypt \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install soap \
+    && docker-php-ext-install xsl \
+    && docker-php-ext-install intl \
+	&& apt-get update && apt-get install -y git \
+    && requirementsToRemove="libpng-dev libjpeg-dev libmcrypt-dev libcurl3-dev libxml2-dev libicu-dev" \
+    && apt-get purge --auto-remove -y $requirementsToRemove \
     && echo "always_populate_raw_post_data=-1" > /usr/local/etc/php/php.ini \
 	&& echo "date.timezone = \"ASIA/Bangkok\""> /usr/local/etc/php/php.ini
 
