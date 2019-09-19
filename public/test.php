@@ -75,48 +75,15 @@ function objectsIntoArray($arrObjData, $arrSkipIndices = array())
     return $arrData;
 }
 
-//News
+//Lotto
 $SanookLottoFeed  = get_data('http://rssfeeds.sanook.com/rss/feeds/sanook/news.lotto.xml?limit=6');
 $LottoFeed = simplexml_load_string($SanookLottoFeed); // สร้างเป็น xml object 
 $LottoFeedXml = objectsIntoArray($LottoFeed); // แปลงค่า xml object เป็นตัวแปร array ใน php
-
-$News =  htmlspecialchars_decode(strip_tags($LottoFeedXml['channel']['item'][0]['title'])).PHP_EOL.PHP_EOL;
-$News = $News. htmlspecialchars_decode(strip_tags($LottoFeedXml['channel']['item'][0]['description'])).PHP_EOL;
-$News = $News.'อ่านข่าวต่อได้ที่: '.$LottoFeedXml['channel']['item'][0]['link'].PHP_EOL;
-
-/* 		$Newsguid = getRedis('News:guid');
 		
-		if ($LottoFeedXml['channel']['item'][0]['link'] =='')
-			{
-				//No Action
-				
-			} else 
-				{
-					$NewsAlert2 = 0;
-					foreach ($Newsguid as $NewsAlert){
-						if ($NewsAlert == $LottoFeedXml['channel']['item'][0]['guid'] | $Newsguid[1]){
-							$NewsAlert2 = $NewsAlert2+1;
-							//push_text("Uf9a10a3ad619a46dc309b4bbb748b5e1","News-debug = ".$NewsAlert2."<BR>"); //Send debug to SMK
-							
-						}
-					}
-					
-					if ($NewsAlert2 == 0) {
-						$alertTo = getRedis('Alert:News');
-						foreach ($alertTo as $to)	{
-							$alertNews = push_text($to,$News);
-							remRedis('News:guid', $Newsguid[12]);					
-							saveRedis('News:guid', $LottoFeedXml['channel']['item'][0]['guid']);	
-						}				
-					}
+		$LottoFeedMessage = preg_replace('#<br\s*/?>#i', "\n",$LottoFeedXml['channel']['item'][0]['title'].PHP_EOL.$LottoFeedXml['channel']['item'][0]['description'].PHP_EOL.'ดูผลรางวัลงวดนี้ทั้งหมด: '.$LottoFeedXml['channel']['item'][0]['guid']);		
 
-				} */
-			
-				
-
-
-		
-		push_text('Uf9a10a3ad619a46dc309b4bbb748b5e1',$LottoFeedXml['channel']['item'][0]['guid']); //SMK
+	
+		push_text('Uf9a10a3ad619a46dc309b4bbb748b5e1',$LottoFeedMessage); //SMK
 		
 
 date_default_timezone_set('ASIA/Bangkok');
