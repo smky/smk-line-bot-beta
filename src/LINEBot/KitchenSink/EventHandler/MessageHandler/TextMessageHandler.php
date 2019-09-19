@@ -218,8 +218,8 @@ class TextMessageHandler implements EventHandler
                 $flexMessageBuilder = FlexSampleShopping::get();
                 $this->bot->replyMessage($replyToken, $flexMessageBuilder);
                 break;
-            case 'ผลตรวจสลากกินแบ่ง';
-                $SanookLottoFeed = get_data('http://rssfeeds.sanook.com/rss/feeds/sanook/news.lotto.xml?limit=1');
+            case 'ผลตรวจสลากกินแบ่ง':
+                $SanookLottoFeed = $this->get_data('http://rssfeeds.sanook.com/rss/feeds/sanook/news.lotto.xml?limit=1');
                 $LottoFeed = simplexml_load_string($SanookLottoFeed); // สร้างเป็น xml object
                 $LottoFeedXml = objectsIntoArray($LottoFeed); // แปลงค่า xml object เป็นตัวแปร array ใน php
                 $LottoFeedMessage = preg_replace('#<br\s*/?>#i', "\n", $LottoFeedXml['channel']['item'][0]['title'] . PHP_EOL . $LottoFeedXml['channel']['item'][0]['description'] . PHP_EOL . 'ดูผลรางวัลงวดนี้ทั้งหมด: ' . $LottoFeedXml['channel']['item'][0]['guid']);
