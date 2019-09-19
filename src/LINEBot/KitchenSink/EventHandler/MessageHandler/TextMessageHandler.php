@@ -19,9 +19,23 @@
 namespace LINE\LINEBot\KitchenSink\EventHandler\MessageHandler;
 
 use LINE\LINEBot;
+use LINE\LINEBot\Event\MessageEvent\TextMessage;
 use LINE\LINEBot\ImagemapActionBuilder\AreaBuilder;
 use LINE\LINEBot\ImagemapActionBuilder\ImagemapMessageActionBuilder;
 use LINE\LINEBot\ImagemapActionBuilder\ImagemapUriActionBuilder;
+use LINE\LINEBot\KitchenSink\EventHandler;
+use LINE\LINEBot\KitchenSink\EventHandler\MessageHandler\Flex\FlexSampleRestaurant;
+use LINE\LINEBot\KitchenSink\EventHandler\MessageHandler\Flex\FlexSampleShopping;
+use LINE\LINEBot\KitchenSink\EventHandler\MessageHandler\Util\UrlBuilder;
+use LINE\LINEBot\MessageBuilder\ImagemapMessageBuilder;
+use LINE\LINEBot\MessageBuilder\Imagemap\BaseSizeBuilder;
+use LINE\LINEBot\MessageBuilder\Imagemap\ExternalLinkBuilder;
+use LINE\LINEBot\MessageBuilder\Imagemap\VideoBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateMessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use LINE\LINEBot\QuickReplyBuilder\ButtonBuilder\QuickReplyButtonBuilder;
 use LINE\LINEBot\QuickReplyBuilder\QuickReplyMessageBuilder;
@@ -32,20 +46,6 @@ use LINE\LINEBot\TemplateActionBuilder\LocationTemplateActionBuilder;
 use LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder;
 use LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder;
 use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
-use LINE\LINEBot\Event\MessageEvent\TextMessage;
-use LINE\LINEBot\KitchenSink\EventHandler;
-use LINE\LINEBot\KitchenSink\EventHandler\MessageHandler\Flex\FlexSampleRestaurant;
-use LINE\LINEBot\KitchenSink\EventHandler\MessageHandler\Flex\FlexSampleShopping;
-use LINE\LINEBot\KitchenSink\EventHandler\MessageHandler\Util\UrlBuilder;
-use LINE\LINEBot\MessageBuilder\Imagemap\BaseSizeBuilder;
-use LINE\LINEBot\MessageBuilder\Imagemap\VideoBuilder;
-use LINE\LINEBot\MessageBuilder\Imagemap\ExternalLinkBuilder;
-use LINE\LINEBot\MessageBuilder\ImagemapMessageBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateMessageBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -171,7 +171,7 @@ class TextMessageHandler implements EventHandler
                         new ImagemapMessageActionBuilder(
                             'URANAI!',
                             new AreaBuilder(520, 520, 520, 520)
-                        )
+                        ),
                     ]
                 );
                 $this->bot->replyMessage($replyToken, $imagemapMessageBuilder);
@@ -198,7 +198,7 @@ class TextMessageHandler implements EventHandler
                         new ImagemapMessageActionBuilder(
                             'URANAI!',
                             new AreaBuilder(520, 520, 520, 520)
-                        )
+                        ),
                     ],
                     null,
                     new VideoBuilder(
@@ -217,6 +217,13 @@ class TextMessageHandler implements EventHandler
             case 'shopping':
                 $flexMessageBuilder = FlexSampleShopping::get();
                 $this->bot->replyMessage($replyToken, $flexMessageBuilder);
+                break;
+            case 'ผลตรวจสลากกินแบ่ง';
+                $SanookLottoFeed = get_data('http://rssfeeds.sanook.com/rss/feeds/sanook/news.lotto.xml?limit=1');
+                $LottoFeed = simplexml_load_string($SanookLottoFeed); // สร้างเป็น xml object
+                $LottoFeedXml = objectsIntoArray($LottoFeed); // แปลงค่า xml object เป็นตัวแปร array ใน php
+                $LottoFeedMessage = preg_replace('#<br\s*/?>#i', "\n", $LottoFeedXml['channel']['item'][0]['title'] . PHP_EOL . $LottoFeedXml['channel']['item'][0]['description'] . PHP_EOL . 'ดูผลรางวัลงวดนี้ทั้งหมด: ' . $LottoFeedXml['channel']['item'][0]['guid']);
+                $this->bot->replyText($replyToken, $LottoFeedMessage);
                 break;
             case 'quickReply':
                 $postback = new PostbackTemplateActionBuilder('Buy', 'action=quickBuy&itemid=222', 'Buy');
@@ -282,4 +289,17 @@ class TextMessageHandler implements EventHandler
             'Status message: ' . $profile['statusMessage']
         );
     }
+
+    private function get_data($url)
+    {
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
+    }
+
 }
