@@ -218,13 +218,6 @@ class TextMessageHandler implements EventHandler
                 $flexMessageBuilder = FlexSampleShopping::get();
                 $this->bot->replyMessage($replyToken, $flexMessageBuilder);
                 break;
-            case 'ผลตรวจสลากกินแบ่ง':
-                $SanookLottoFeed = $this->get_data('http://rssfeeds.sanook.com/rss/feeds/sanook/news.lotto.xml?limit=1');
-                $LottoFeed = simplexml_load_string($SanookLottoFeed); // สร้างเป็น xml object
-                $LottoFeedXml = objectsIntoArray($LottoFeed); // แปลงค่า xml object เป็นตัวแปร array ใน php
-                $LottoFeedMessage = preg_replace('#<br\s*/?>#i', "\n", $LottoFeedXml['channel']['item'][0]['title'] . PHP_EOL . $LottoFeedXml['channel']['item'][0]['description'] . PHP_EOL . 'ดูผลรางวัลงวดนี้ทั้งหมด: ' . $LottoFeedXml['channel']['item'][0]['guid']);
-                $this->bot->replyText($replyToken, $LottoFeedMessage);
-                break;
             case 'quickReply':
                 $postback = new PostbackTemplateActionBuilder('Buy', 'action=quickBuy&itemid=222', 'Buy');
                 $datetimePicker = new DatetimePickerTemplateActionBuilder(
@@ -246,6 +239,14 @@ class TextMessageHandler implements EventHandler
 
                 $messageTemplate = new TextMessageBuilder('Text with quickReply buttons', $quickReply);
                 $this->bot->replyMessage($replyToken, $messageTemplate);
+                break;
+
+            case 'ผลตรวจสลากกินแบ่ง':
+                $SanookLottoFeed = file_get_contents('http://rssfeeds.sanook.com/rss/feeds/sanook/news.lotto.xml?limit=1');
+                $LottoFeed = simplexml_load_string($SanookLottoFeed);
+                $LottoFeedXml = $this->objectsIntoArray($LottoFeed);
+                $LottoFeedMessage = preg_replace('#<br\s*/?>#i', "\n", $LottoFeedXml['channel']['item'][0]['title'] . PHP_EOL . $LottoFeedXml['channel']['item'][0]['description'] . PHP_EOL . 'ดูผลรางวัลงวดนี้ทั้งหมด: ' . $LottoFeedXml['channel']['item'][0]['guid']);
+                $this->bot->replyText($replyToken, $LottoFeedMessage);
                 break;
             default:
                 $this->echoBack($replyToken, $text);
@@ -289,17 +290,26 @@ class TextMessageHandler implements EventHandler
             'Status message: ' . $profile['statusMessage']
         );
     }
-
-    private function get_data($url)
+    private function objectsIntoArray($arrObjData, $arrSkipIndices = array())
     {
-        $ch = curl_init();
-        $timeout = 5;
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $data = curl_exec($ch);
-        curl_close($ch);
-        return $data;
+        $arrData = array();
+         
+        // if input is object, convert into array
+        if (is_object($arrObjData)) {
+            $arrObjData = get_object_vars($arrObjData);
+        }
+         
+        if (is_array($arrObjData)) {
+            foreach ($arrObjData as $index => $value) {
+                if (is_object($value) || is_array($value)) {
+                    $value = objectsIntoArray($value, $arrSkipIndices); // recursive call
+                }
+                if (in_array($index, $arrSkipIndices)) {
+                    continue;
+                }
+                $arrData[$index] = $value;
+            }
+        }
+        return $arrData;
     }
-
 }
