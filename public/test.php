@@ -85,6 +85,22 @@ $LottoFeedXml = objectsIntoArray($LottoFeed); // แปลงค่า xml objec
 	
 		push_text('Uf9a10a3ad619a46dc309b4bbb748b5e1',$LottoFeedMessage); //SMK
 		
+$LottoLastDate = file_get_contents($_SERVER["DOCUMENT_ROOT"] . '/Lotto-Last.txt');
+
+    if ($LottoLastDate == $LottoFeedXml['channel']['item'][0]['guid'] ) {
+		echo $LottoFeedMessage;
+    } else
+        {
+        $to = 'Uf9a10a3ad619a46dc309b4bbb748b5e1';
+
+            $alertLotto = push_text($to, $LottoFeedMessage);
+
+			//Save Last-Date
+            $myfile = fopen($_SERVER['DOCUMENT_ROOT'] . "/Lotto-Last.txt", "w") or die("Unable to open file!");
+            fwrite($myfile, $LottoFeedXml['channel']['item'][0]['guid']);
+            fclose($myfile);
+        
+    }		
 
 date_default_timezone_set('ASIA/Bangkok');
 print date("l jS \of F Y h:i:s A") .PHP_EOL;
