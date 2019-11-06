@@ -1,0 +1,872 @@
+{
+	"messages": [
+		{
+			"type": "flex",
+			"altText": "ราคาน้ำมันบางจากวันนี้",
+			"contents": {
+				"type": "bubble",
+				"size": "micro",
+				"direction": "ltr",
+				"header": {
+					"type": "box",
+					"layout": "horizontal",
+					"contents": [
+						{
+							"type": "image",
+							"url": "https://smk-line-bot.herokuapp.com/images/logo-bcp.png",
+							"flex": 0,
+							"align": "start",
+							"size": "xxs",
+							"aspectRatio": "16:9",
+							"action": {
+								"type": "uri",
+								"uri": "https://www.bangchak.co.th/oilprice.html"
+							}
+						},
+						{
+							"type": "text",
+							"text": "พรุ่งนี้น้ำมันขึ้นราคา",
+							"flex": 0,
+							"weight": "bold",
+							"size": "xxs",
+							"color": "#FFFFFF"
+						}
+					]
+				},
+				"body": {
+					"type": "box",
+					"layout": "vertical",
+					"contents": [
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": " ",
+											"align": "center"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "วันนี้ั",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "พรุ่งนี้",
+											"align": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "เปลี่ยน",
+											"align": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "separator"
+										},
+										{
+											"type": "image",
+											"url": "https://smk-line-bot.herokuapp.com/images/logo-Hi-premium-diesel-s.png",
+											"align": "start",
+											"size": "xxs",
+											"aspectRatio": "5:2"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$HiPremiumDieselSToday",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$HiPremiumDieselSTomorrow",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$HiPremiumDieselSDiff",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "separator"
+										},
+										{
+											"type": "image",
+											"url": "https://smk-line-bot.herokuapp.com/images/logo-Hi-diesel.png",
+											"align": "start",
+											"size": "xxs",
+											"aspectRatio": "5:2"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$DieselSToday",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$DieselSTomorrow",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$DieselSDiff",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "separator"
+										},
+										{
+											"type": "image",
+											"url": "https://smk-line-bot.herokuapp.com/images/B10noSbcpweb.jpg",
+											"align": "start",
+											"size": "xxs",
+											"aspectRatio": "5:2"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$HIDIESELSB10Today",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$HIDIESELSB10Tomorrow",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$HIDIESELSB10Diff",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "separator"
+										},
+										{
+											"type": "image",
+											"url": "https://smk-line-bot.herokuapp.com/images/B20s-Bangchak.jpg",
+											"align": "start",
+											"size": "xxs",
+											"aspectRatio": "5:2"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$HIDIESELB20SToday",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$HIDIESELB20STomorrow",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$HIDIESELB20SDiff",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "separator"
+										},
+										{
+											"type": "image",
+											"url": "https://smk-line-bot.herokuapp.com/images/logo-gasohol-e85.png",
+											"align": "start",
+											"size": "xxs",
+											"aspectRatio": "5:2"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$GasoholE85SToday",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$GasoholE85STomorrow",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$GasoholE85SDiff",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "separator"
+										},
+										{
+											"type": "image",
+											"url": "https://smk-line-bot.herokuapp.com/images/logo-E20s.png",
+											"align": "start",
+											"size": "xxs",
+											"aspectRatio": "5:2"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$GasoholE20SToday",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$GasoholE20STomorrow",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$GasoholE20SDiff",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "separator"
+										},
+										{
+											"type": "image",
+											"url": "https://smk-line-bot.herokuapp.com/images/logo-gasohol-91.png",
+											"align": "start",
+											"size": "xxs",
+											"aspectRatio": "5:2"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$Gasohol91SToday",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$Gasohol91STomorrow",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$Gasohol91SDiff",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "separator"
+										},
+										{
+											"type": "image",
+											"url": "https://smk-line-bot.herokuapp.com/images/logo-gasohol-95.png",
+											"align": "start",
+											"size": "xxs",
+											"aspectRatio": "5:2"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$Gasohol95SToday",
+											"gravity": "center",
+											"align": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$Gasohol95STomorrow",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$Gasohol95SDiff",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						},
+						{
+							"type": "box",
+							"layout": "horizontal",
+							"contents": [
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "separator"
+										},
+										{
+											"type": "image",
+											"url": "https://smk-line-bot.herokuapp.com/images/logo-NGV.png",
+											"align": "start",
+											"size": "xxs",
+											"aspectRatio": "5:2"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$NGVToday",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$NGVTomorrow",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								},
+								{
+									"type": "box",
+									"layout": "vertical",
+									"contents": [
+										{
+											"type": "text",
+											"text": "$NGVDiff",
+											"align": "center",
+											"gravity": "center",
+											"size": "xxs",
+											"color": "#FFFFFF"
+										}
+									]
+								},
+								{
+									"type": "separator"
+								}
+							]
+						},
+						{
+							"type": "separator"
+						}
+					]
+				},
+				"styles": {
+					"header": {
+						"backgroundColor": "#008AAA"
+					},
+					"hero": {
+						"backgroundColor": "#008AAA"
+					},
+					"body": {
+						"backgroundColor": "#008AAA"
+					}
+				}
+			}
+		}
+	]
+}
