@@ -106,7 +106,30 @@ class TextMessageHandler implements EventHandler
                 }
                 $this->bot->replyText($replyToken, 'Bot cannot leave from 1:1 chat');
                 break;
-            case 'confirm':
+                case 'เอาไอดีมา':
+                case 'get id':
+
+                    if ($this->textMessage->isRoomEvent()) {
+                        $RoomId = $this->textMessage->getRoomId();
+                        $UserId = $this->textMessage->getUserId();
+                        $this->bot->replyText($replyToken, 'Room Id: ' . $RoomId . PHP_EOL . 'User Id: ' . $UserId);
+                        return true;
+                    } else if ($this->textMessage->isGroupEvent()) {
+    
+                        $GroupId = $this->textMessage->getGroupId();
+                        $UserId = $this->textMessage->getUserId();
+                        $this->bot->replyText($replyToken, 'Group Id: ' . $GroupId . PHP_EOL . 'User Id: ' . $UserId);
+                        return true;
+    
+                    } else {
+                        $UserId = $this->textMessage->getUserId();
+                        $this->bot->replyText($replyToken, 'User Id: ' . $UserId);
+                        return true;
+                    }
+    
+                    break;
+                    
+                    case 'confirm':
                 $this->bot->replyMessage(
                     $replyToken,
                     new TemplateMessageBuilder(
@@ -118,6 +141,38 @@ class TextMessageHandler implements EventHandler
                     )
                 );
                 break;
+			            case 'ราคาทอง':
+
+                $dom = new DOMDocument();
+                $dom->loadHTMLFile($_SERVER['DOCUMENT_ROOT'] . "/gold.html");
+                $tables = $dom->getElementsByTagName('table');
+
+                $a = array();
+                foreach ($tables as $k => $table) {
+                    foreach ($table->getElementsByTagName('tr') as $td) {
+                        $a['table_' . $k][] = array_values(array_filter(explode(' ', str_replace(array("\n", "\r"), "", $td->nodeValue))));
+                    }
+                }
+                $GoldLastPrice = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/gold2.txt");
+                $GoldLastPrice = (int) str_replace(array(' ', ','), '', $GoldLastPrice);
+                $a['table_0'][1][2] = (int) str_replace(array(' ', ','), '', $a['table_0'][1][2]);
+                $GoldChangePrice = $a['table_0'][1][2] - $GoldLastPrice;
+
+                $goldbarprice_buy = $a['table_0'][1][1];
+                $golbarprice_sale = $a['table_0'][1][2];
+                $goldprice_buy = $a['table_0'][2][1];
+                $goldprice_sale = $a['table_0'][2][2];
+                $diff_price = $GoldChangePrice;
+
+                $gold_price = 'goldprice, ' . $goldbarprice_buy . ' , ' . $golbarprice_sale . ' , ' . $goldprice_buy . ' , ' . $goldprice_sale . ' , ' . $diff_price;
+                $text = $gold_price;
+                file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/line_body.txt",file_get_contents('php://input'));
+                $test = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/line_body.txt");
+				$data = json_decode($test, true);
+				file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/line_body.json",$data);
+                $this->bot->replyText($replyToken, $text);
+                break;
+				
             case 'buttons':
                 $imageUrl = UrlBuilder::buildUrl($this->req, ['static', 'buttons', '1040.jpg']);
                 $buttonTemplateBuilder = new ButtonTemplateBuilder(
